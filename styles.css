@@ -1,126 +1,109 @@
-/* === Reader family === */
-@font-face {
+/* === Reader font family === */
+@font-face {font-family:"Reader";src:url("./assets/fonts/Reader-Regular.woff2")format("woff2");font-weight:400;font-style:normal;font-display:swap;}
+@font-face {font-family:"Reader";src:url("./assets/fonts/Reader-Italic.woff2")format("woff2");font-weight:400;font-style:italic;font-display:swap;}
+@font-face {font-family:"Reader";src:url("./assets/fonts/Reader-Medium.woff2")format("woff2");font-weight:500;font-style:normal;font-display:swap;}
+@font-face {font-family:"Reader";src:url("./assets/fonts/Reader-MediumItalic.woff2")format("woff2");font-weight:500;font-style:italic;font-display:swap;}
+@font-face {font-family:"Reader";src:url("./assets/fonts/Reader-Bold.woff2")format("woff2");font-weight:700;font-style:normal;font-display:swap;}
+@font-face {font-family:"Reader";src:url("./assets/fonts/reader-bold-italic-pro.woff2")format("woff2");font-weight:700;font-style:italic;font-display:swap;}
+@font-face {font-family:"Reader";src:url("./assets/fonts/Reader-Black-50.woff2")format("woff2");font-weight:900;font-style:normal;font-display:swap;}
+
+/* === Base === */
+:root {
+  --bg:#8a0f14;
+  --fg:#fff;
+  --accent:#ff4154;
+  --muted:#e6c9c9;
+  --dot-gap:14;
+  /* unified gutter for header + SVG */
+  --gutter: clamp(24px, 6vw, 120px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  background: #111;
+  color: #eee;
+  font-family: "Reader", ui-sans-serif, system-ui;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.page { min-height: 100vh; }
+.panel { min-height: 100vh; display: grid; place-items: center; padding: 6vmin; }
+.panel .inner { width: min(1400px, 92vw); }
+.p1 { background: #111; }
+.p2 { background: #171a1f; }
+.p3 { background: #242629; }
+
+/* === Impact Module === */
+.c-impact { background: var(--bg); color: var(--fg); overflow: hidden; position: relative; }
+.c-impact .inner { position: relative; height: 100vh; }
+
+/* === Headline (aligned to Introducing) === */
+.impact-headline {
+  position: relative;
+  margin-left: var(--gutter);
+  margin-bottom: clamp(60px, 8vh, 100px);
+  max-width: min(85vw, 720px);
+  text-align: left;
+  font-family: "Reader", "Helvetica", sans-serif;
+  font-weight: 300;
+  color: #eae8e1;
+  font-size: clamp(22px, 3.6vw, 48px);
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+/* === Naming animation === */
+.naming-animation {
+  position: absolute;
+  top: 0;
+  left: var(--gutter);
+  width: calc(100% - var(--gutter));
+  height: 100%;
+}
+.naming-animation text {
+  fill: var(--fg);
   font-family: "Reader";
-  src: url("./assets/fonts/Reader-Regular.woff2") format("woff2"),
-       url("./assets/fonts/Reader-Regular.otf") format("opentype");
-  font-weight: 400; font-style: normal; font-display: swap;
+  font-weight: 900;
+  opacity: 0;
 }
-@font-face {
-  font-family: "Reader";
-  src: url("./assets/fonts/Reader-Italic.woff2") format("woff2"),
-       url("./assets/fonts/Reader-Italic.otf") format("opentype");
-  font-weight: 400; font-style: italic; font-display: swap;
-}
-@font-face {
-  font-family: "Reader";
-  src: url("./assets/fonts/Reader-Medium.woff2") format("woff2"),
-       url("./assets/fonts/Reader-Medium.otf") format("opentype");
-  font-weight: 500; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: "Reader";
-  src: url("./assets/fonts/Reader-MediumItalic.woff2") format("woff2"),
-       url("./assets/fonts/Reader-MediumItalic.otf") format("opentype");
-  font-weight: 500; font-style: italic; font-display: swap;
-}
-@font-face {
-  font-family: "Reader";
-  src: url("./assets/fonts/Reader-Bold.woff2") format("woff2"),
-       url("./assets/fonts/Reader-Bold.otf") format("opentype");
-  font-weight: 700; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: "Reader";
-  src: url("./assets/fonts/reader-bold-italic-pro.woff2") format("woff2"),
-       url("./assets/fonts/reader-bold-italic-pro.otf") format("opentype");
-  font-weight: 700; font-style: italic; font-display: swap;
-}
-@font-face {
-  font-family: "Reader";
-  src: url("./assets/fonts/Reader-Black-50.woff2") format("woff2"),
-       url("./assets/fonts/Reader-Black-50.otf") format("opentype");
-  font-weight: 900; font-style: normal; font-display: swap;
+.naming-animation .our,
+.naming-animation .name { fill: var(--accent); }
+.naming-animation .path {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 0 var(--dot-gap);
 }
 
-/* ---------- Page scaffold ---------- */
-*{box-sizing:border-box}
-:root{
-  --bg: #8a0f14;            /* comp backdrop */
-  --fg: #fff;
-  --accent: #ff4154;        /* CAA red/pink */
-  --muted: #e6c9c9;         /* dotted line color */
-  --dot-gap: 14;            /* SVG dot spacing (gap length) */
+/* === Logo & footer === */
+.logo-wrap {
+  position: absolute;
+  right: clamp(24px, 7vw, 120px);
+  bottom: clamp(24px, 6vw, 64px);
+  opacity: 0;
+  transform: translateY(20px);
 }
-html,body{height:100%;margin:0}
-body{
-  font-family:"Reader", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
-  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-  background:#111; color:#eee;
+.logo {
+  width: clamp(300px, 40vw, 520px);
+  height: auto;
+  display: block;
 }
-.page{min-height:100vh}
-
-.panel{position:relative; min-height:100vh; display:grid; place-items:center; padding:6vmin}
-.panel .inner{width:min(1400px,92vw)}
-
-/* demo colors for non-impact panels */
-.p1{background:#111;color:#ddd}
-.p3{background:#171a1f}
-.p4{background:#0b0b0c;color:#ddd}
-
-/* ---------- Impact module (scoped by .c-impact) ---------- */
-.c-impact{background:var(--bg); color:var(--fg); overflow:clip}
-.c-impact .inner{position:relative; height:100vh}
-
-/* eyebrow */
-.c-impact .eyebrow{
-  position:absolute; top:36px; left:clamp(24px,6vw,120px);
-  margin:0; font-size:clamp(16px,2.2vw,28px); opacity:.9; font-weight:700
+.toast {
+  position: absolute;
+  left: 40px;
+  bottom: 28px;
+  font-weight: 700;
+  font-size: clamp(18px, 2.4vw, 28px);
+  line-height: 1.2;
 }
-
-/* animated words (match comp weights/colors) */
-.c-impact .word{
-  position:absolute; margin:0; letter-spacing:.01em;
-  opacity:0; transform:translateY(20px); will-change:transform,opacity;
-  font-weight:900; /* Reader Black for punch */
-}
-.c-impact .w-introducing{ top:170px; left:120px; font-size:clamp(40px,8vw,112px); color:#fff }
-.c-impact .w-our        { top:300px; right:130px; font-size:clamp(42px,7.5vw,96px); color:var(--accent) }
-.c-impact .w-new        { top:395px; left:740px; font-size:clamp(48px,9vw,108px); color:#fff }
-.c-impact .w-name       { bottom:190px; left:120px; font-size:clamp(48px,9vw,108px); color:var(--accent) }
-
-/* SVG with dotted paths */
-.c-impact .lines{
-  position:absolute; inset:0; width:100%; height:100%;
-  shape-rendering:geometricPrecision; pointer-events:none
-}
-.c-impact .dotline{
-  fill:none; stroke:var(--muted); stroke-width:6.5; stroke-linecap:round;
-  stroke-dasharray: 0 var(--dot-gap); /* 0-length dash + gap = round dots */
-  /* dashoffset will be set & animated via JS */
-}
-
-/* logo */
-.c-impact .logo-wrap{
-  position:absolute; right:clamp(24px,7vw,120px); bottom:clamp(24px,6vw,64px);
-  opacity:0; transform:translateY(20px); will-change:transform,opacity
-}
-.c-impact .logo{ width:clamp(300px,40vw,520px); height:auto; display:block }
-.c-impact .logo-wrap svg{ shape-rendering:geometricPrecision }
-
-/* footer copy */
-.c-impact .toast{
-  position:absolute; left:40px; bottom:28px; margin:0;
-  font-weight:700; font-size:clamp(18px,2.4vw,28px); line-height:1.15; opacity:.95
-}
-
-/* optional lottie mount */
-.c-impact .lottie{
-  position:absolute; inset:auto; right:10vw; top:8vh; width:min(22vw,320px); height:min(22vw,320px);
-  pointer-events:none; opacity:.9
-}
-
-/* reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .c-impact .word, .c-impact .logo-wrap { opacity:1 !important; transform:none !important }
-  .c-impact .dotline{ stroke-dashoffset:0 !important }
+.lottie {
+  position: absolute;
+  right: 10vw;
+  top: 8vh;
+  width: min(22vw, 320px);
+  height: min(22vw, 320px);
+  opacity: .9;
+  pointer-events: none;
 }
