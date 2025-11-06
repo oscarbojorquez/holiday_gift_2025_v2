@@ -14,6 +14,8 @@
   --accent:#ff4154;
   --muted:#e6c9c9;
   --dot-gap:14;
+  --toast-gap: clamp(20px, 4vw, 40px);
+  --logo-footer-offset: -75px;
   /* unified gutter for header + SVG */
   --gutter: clamp(24px, 6vw, 120px);
 }
@@ -35,14 +37,25 @@ body {
 .p3 { background: #242629; }
 
 /* === Impact Module === */
-.c-impact { background: var(--bg); color: var(--fg); overflow: hidden; position: relative; }
-.c-impact .inner { position: relative; height: 100vh; }
+.c-impact {
+  background: var(--bg);
+  color: var(--fg);
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+.c-impact .inner {
+  position: relative;
+  min-height: calc(100vh + clamp(-40px, 2vh, 20px));
+  padding-bottom: clamp(24px, 4vw, 48px);
+}
+
 
 /* === Headline (aligned to Introducing) === */
 .impact-headline {
   position: relative;
   margin-left: var(--gutter);
-  margin-bottom: clamp(60px, 8vh, 100px);
+  margin-bottom: clamp(10px, 6vh, 50px);
   max-width: min(85vw, 720px);
   text-align: left;
   font-family: "Reader", "Helvetica", sans-serif;
@@ -79,24 +92,25 @@ body {
 
 /* === Logo & footer === */
 .logo-wrap {
-  position: absolute;
-  right: clamp(24px, 7vw, 120px);
-  bottom: clamp(24px, 6vw, 64px);
   opacity: 0;
-  transform: translateY(20px);
+  transform-box: fill-box;
+  transform-origin: center;
+  pointer-events: none;
 }
-.logo {
-  width: clamp(300px, 40vw, 520px);
-  height: auto;
+.logo-wrap .logo {
+  width: 100%;
+  height: 100%;
   display: block;
 }
 .toast {
   position: absolute;
-  left: 40px;
-  bottom: 28px;
+  left: var(--gutter);
+  top: 0;
+  bottom: auto;
   font-weight: 700;
   font-size: clamp(18px, 2.4vw, 28px);
   line-height: 1.2;
+  max-width: min(85vw, 720px);
 }
 .lottie {
   position: absolute;
