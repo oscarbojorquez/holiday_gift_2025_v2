@@ -9,15 +9,16 @@
 
 /* === Base === */
 :root {
-  --bg:#8a0f14;
-  --fg:#fff;
-  --accent:#ff4154;
-  --muted:#e6c9c9;
+  --bg:#8f000f;
+  --fg:#eae8e1;
+  --accent:#fc002d;
+  --muted:#eae8e1;
+  --star-color:#ff9616;
   --dot-gap:14;
   --toast-gap: clamp(20px, 4vw, 40px);
   --logo-footer-offset: -75px;
   /* unified gutter for header + SVG */
-  --gutter: clamp(24px, 6vw, 120px);
+  --gutter: clamp(24px, 6.45vw, 94px);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,6 +33,7 @@ body {
 .page { min-height: 100vh; }
 .panel { min-height: 100vh; display: grid; place-items: center; padding: 6vmin; }
 .panel .inner { width: min(1400px, 92vw); }
+.panel.c-impact { padding-bottom: clamp(8px, 1.8vw, 18px); }
 .p1 { background: #111; }
 .p2 { background: #171a1f; }
 .p3 { background: #242629; }
@@ -41,13 +43,19 @@ body {
   background: var(--bg);
   color: var(--fg);
   position: relative;
-  overflow-x: hidden;
-  overflow-y: visible;
+  overflow: hidden;
 }
 .c-impact .inner {
   position: relative;
-  min-height: calc(100vh + clamp(-40px, 2vh, 20px));
-  padding-bottom: clamp(24px, 4vw, 48px);
+  min-height: 100vh;
+  max-width: min(1457px, 100vw);
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(20px, 3vh, 40px) 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 
@@ -55,30 +63,35 @@ body {
 .impact-headline {
   position: relative;
   margin-left: var(--gutter);
-  margin-bottom: clamp(10px, 6vh, 50px);
-  max-width: min(85vw, 720px);
+  margin-top: clamp(20px, 3vh, 40px);
+  margin-bottom: clamp(30px, 5vh, 60px);
+  max-width: min(85vw, 641px);
   text-align: left;
   font-family: "Reader", "Helvetica", sans-serif;
   font-weight: 300;
   color: #eae8e1;
-  font-size: clamp(22px, 3.6vw, 48px);
-  line-height: 1.2;
-  letter-spacing: -0.04em;
+  font-size: clamp(24px, 2.5vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  z-index: 10;
 }
 
 /* === Naming animation === */
 .naming-animation {
   position: absolute;
-  top: 0;
+  top: clamp(80px, 12vh, 150px);
   left: var(--gutter);
-  width: calc(100% - var(--gutter));
-  height: 100%;
+  width: calc(100% - var(--gutter) - var(--gutter));
+  max-width: calc(100vw - var(--gutter) - var(--gutter));
+  height: calc(100vh - clamp(80px, 12vh, 150px) - clamp(80px, 12vh, 150px));
+  max-height: 800px;
 }
 .naming-animation text {
   fill: var(--fg);
   font-family: "Reader";
-  font-weight: 900;
+  font-weight: 700;
   opacity: 0;
+  font-size: clamp(48px, 5vw, 96px);
 }
 .naming-animation .our,
 .naming-animation .name { fill: var(--accent); }
@@ -103,14 +116,16 @@ body {
   display: block;
 }
 .toast {
-  position: absolute;
-  left: var(--gutter);
-  top: 0;
-  bottom: auto;
+  position: relative;
+  margin-left: var(--gutter);
+  margin-top: auto;
+  margin-bottom: clamp(20px, 3vh, 40px);
   font-weight: 700;
-  font-size: clamp(18px, 2.4vw, 28px);
-  line-height: 1.2;
-  max-width: min(85vw, 720px);
+  font-size: clamp(18px, 2vw, 38px);
+  line-height: 1.3;
+  max-width: min(85vw, 466px);
+  color: var(--fg);
+  z-index: 10;
 }
 .lottie {
   position: absolute;
@@ -120,4 +135,118 @@ body {
   height: min(22vw, 320px);
   opacity: .9;
   pointer-events: none;
+}
+
+/* === Decorative Stars === */
+.star {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.star-1 { left: 3%; top: 2%; width: clamp(18px, 1.8vw, 26px); height: auto; }
+.star-2 { left: 4%; top: 26%; width: clamp(18px, 1.8vw, 26px); height: auto; }
+.star-3 { left: 38%; top: 13%; width: clamp(24px, 2.4vw, 35px); height: auto; }
+.star-4 { left: 41%; top: 15%; width: clamp(35px, 3.5vw, 51px); height: auto; }
+.star-5 { left: 76%; top: 17%; width: clamp(35px, 3.5vw, 51px); height: auto; }
+.star-6 { left: 90%; top: 5%; width: clamp(48px, 4.8vw, 70px); height: auto; }
+.star-7 { left: 89%; top: 20%; width: clamp(18px, 1.8vw, 26px); height: auto; }
+.star-8 { left: 30%; top: 37%; width: clamp(14px, 1.4vw, 20px); height: auto; }
+.star-9 { left: 5%; top: 49%; width: clamp(24px, 2.4vw, 35px); height: auto; }
+.star-10 { left: 48%; top: 49%; width: clamp(24px, 2.4vw, 35px); height: auto; }
+.star-11 { left: 54%; top: 70%; width: clamp(15px, 1.5vw, 22px); height: auto; }
+.star-12 { left: 56%; top: 71%; width: clamp(14px, 1.4vw, 20px); height: auto; }
+.star-13 { left: 92%; top: 46%; width: clamp(14px, 1.4vw, 20px); height: auto; }
+.star-14 { left: 3%; top: 86%; width: clamp(35px, 3.5vw, 51px); height: auto; }
+.star-15 { left: 31%; top: 91%; width: clamp(14px, 1.4vw, 20px); height: auto; }
+.star-16 { left: 34%; top: 90%; width: clamp(24px, 2.4vw, 35px); height: auto; }
+.star-17 { left: 73%; top: 17%; width: clamp(14px, 1.4vw, 20px); height: auto; }
+.star-18 { left: 72%; top: 71%; width: clamp(35px, 3.5vw, 51px); height: auto; }
+
+/* === Footer Links === */
+.footer-links {
+  position: absolute;
+  right: clamp(24px, 6.45vw, 94px);
+  bottom: clamp(15px, 2vh, 30px);
+  font-family: "Reader";
+  font-size: clamp(11px, 1vw, 14px);
+  font-weight: 400;
+  color: var(--fg);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  z-index: 10;
+}
+
+.footer-links a {
+  color: var(--fg);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.footer-links a:hover {
+  opacity: 0.7;
+}
+
+.footer-links .separator {
+  white-space: pre;
+}
+
+/* === Responsive adjustments for 1920x1080 === */
+@media (max-height: 1080px) {
+  .c-impact .inner {
+    padding: clamp(15px, 2vh, 30px) 0;
+  }
+  
+  .impact-headline {
+    margin-top: clamp(15px, 2vh, 30px);
+    margin-bottom: clamp(20px, 3vh, 40px);
+    font-size: clamp(20px, 2.2vw, 42px);
+  }
+  
+  .naming-animation {
+    top: clamp(60px, 10vh, 120px);
+    height: calc(100vh - clamp(60px, 10vh, 120px) - clamp(100px, 15vh, 180px));
+  }
+  
+  .toast {
+    margin-bottom: clamp(15px, 2vh, 30px);
+    font-size: clamp(16px, 1.8vw, 32px);
+  }
+  
+  .footer-links {
+    bottom: clamp(10px, 1.5vh, 20px);
+    font-size: clamp(10px, 0.9vw, 13px);
+  }
+}
+
+@media (max-height: 900px) {
+  .naming-animation {
+    top: clamp(50px, 8vh, 100px);
+    height: calc(100vh - clamp(50px, 8vh, 100px) - clamp(80px, 12vh, 150px));
+  }
+  
+  .naming-animation text {
+    font-size: clamp(40px, 4.5vw, 80px);
+  }
+}
+
+@media (max-height: 768px) {
+  .impact-headline {
+    font-size: clamp(18px, 2vw, 36px);
+    margin-bottom: clamp(15px, 2vh, 30px);
+  }
+  
+  .naming-animation {
+    top: clamp(40px, 7vh, 80px);
+    height: calc(100vh - clamp(40px, 7vh, 80px) - clamp(60px, 10vh, 120px));
+  }
+  
+  .naming-animation text {
+    font-size: clamp(32px, 4vw, 64px);
+  }
+  
+  .toast {
+    font-size: clamp(14px, 1.6vw, 28px);
+  }
 }
