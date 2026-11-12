@@ -6,6 +6,8 @@
   <meta name="x-apple-disable-message-reformatting">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="telephone=no" name="format-detection">
+  <meta name="color-scheme" content="light dark">
+  <meta name="supported-color-schemes" content="light dark">
   <title>Hope on the Table</title>
   <!--[if (mso 16)]>
     <style type="text/css">
@@ -43,6 +45,21 @@ a[x-apple-data-detectors],
 img {
   -ms-interpolation-mode:bicubic;
 }
+:root {
+  color-scheme:light dark;
+  supported-color-schemes:light dark;
+}
+/* DARK MODE. The design is already dark, so the goal is to stop mail apps recolouring it:
+   the card colour must stay #150928 or it no longer matches the border GIFs.
+   Inline, every card cell also carries a same-colour linear-gradient, which dark modes
+   leave alone; the rules below cover clients that honour dark-mode CSS. */
+@media (prefers-color-scheme:dark) {
+  .card, .card td { background-color:#150928!important; background-image:linear-gradient(#150928,#150928)!important }
+  .copy p { color:#ffffff!important }
+}
+/* Outlook.com and the Outlook mobile apps */
+[data-ogsb] .card, [data-ogsb] .card td { background-color:#150928!important; background-image:linear-gradient(#150928,#150928)!important }
+[data-ogsc] .copy p { color:#ffffff!important }
 /* The layout is fluid without this block; it only tightens spacing on narrow screens. */
 @media only screen and (max-width:480px) {
   .copy { padding-left:2px!important; padding-right:2px!important }
@@ -66,11 +83,11 @@ img {
       <!-- CARD: fluid up to 550px. The border is seven animated GIF slices, all real images,
            stacked around two text sections that are free to grow with the copy.
            #150928 is the flat background colour baked into every slice. -->
-      <table cellpadding="0" cellspacing="0" align="center" bgcolor="#150928" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;max-width:550px;background-color:#150928">
+      <table class="card" cellpadding="0" cellspacing="0" align="center" bgcolor="#150928" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;max-width:550px;background-color:#150928;background-image:linear-gradient(#150928,#150928)">
 
        <!-- BORDER: top garland -->
        <tr>
-        <td style="padding:0;Margin:0;font-size:0;line-height:0"><img src="images/border-top.gif" width="550" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
+        <td bgcolor="#150928" style="padding:0;Margin:0;font-size:0;line-height:0;background-color:#150928;background-image:linear-gradient(#150928,#150928)"><img src="images/border-top.gif" width="550" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
        </tr>
 
        <!-- SECTION 1: letter + headline, between the upper side vines -->
@@ -78,8 +95,8 @@ img {
         <td style="padding:0;Margin:0">
          <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%">
           <tr>
-           <td width="17.4%" valign="middle" style="padding:0;Margin:0;width:17.4%;font-size:0;line-height:0"><img src="images/border-upper-left.gif" width="96" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
-           <td class="copy" align="center" valign="middle" style="padding:0 6px;Margin:0">
+           <td width="17.4%" valign="middle" bgcolor="#150928" style="background-color:#150928;background-image:linear-gradient(#150928,#150928);padding:0;Margin:0;width:17.4%;font-size:0;line-height:0"><img src="images/border-upper-left.gif" width="96" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
+           <td class="copy" align="center" valign="middle" bgcolor="#150928" style="background-color:#150928;background-image:linear-gradient(#150928,#150928);padding:0 6px 20px;Margin:0">
             <!-- Mandrill: greeting name goes here -->
             <p style="Margin:0 0 18px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:18px;letter-spacing:0;font-weight:400;color:#ffffff;font-size:12px">Dear Brad,</p>
             <p style="Margin:0 0 18px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:18px;letter-spacing:0;font-weight:400;color:#ffffff;font-size:12px">As another year comes to a close, the holidays return with their familiar comforts. A time to reflect, share a meal, and make room at the table for those we hold dear.</p>
@@ -94,7 +111,7 @@ img {
              </tr>
             </table>
            </td>
-           <td width="15%" valign="middle" style="padding:0;Margin:0;width:15%;font-size:0;line-height:0"><img src="images/border-upper-right.gif" width="83" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
+           <td width="15%" valign="middle" bgcolor="#150928" style="background-color:#150928;background-image:linear-gradient(#150928,#150928);padding:0;Margin:0;width:15%;font-size:0;line-height:0"><img src="images/border-upper-right.gif" width="83" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
           </tr>
          </table>
         </td>
@@ -102,7 +119,7 @@ img {
 
        <!-- BORDER: centre pomegranate divider -->
        <tr>
-        <td style="padding:0;Margin:0;font-size:0;line-height:0"><img src="images/border-centre.gif" width="550" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
+        <td bgcolor="#150928" style="padding:0;Margin:0;font-size:0;line-height:0;background-color:#150928;background-image:linear-gradient(#150928,#150928)"><img src="images/border-centre.gif" width="550" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
        </tr>
 
        <!-- SECTION 2: closing + signature, between the lower side vines.
@@ -112,8 +129,8 @@ img {
         <td style="padding:0;Margin:0">
          <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%">
           <tr>
-           <td width="17.4%" valign="bottom" style="padding:0;Margin:0;width:17.4%;font-size:0;line-height:0"><img src="images/border-lower-left.gif" width="96" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
-           <td class="copy" align="center" valign="top" style="padding:14px 6px 24px;Margin:0">
+           <td width="17.4%" valign="bottom" bgcolor="#150928" style="background-color:#150928;background-image:linear-gradient(#150928,#150928);padding:0;Margin:0;width:17.4%;font-size:0;line-height:0"><img src="images/border-lower-left.gif" width="96" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
+           <td class="copy" align="center" valign="top" bgcolor="#150928" style="background-color:#150928;background-image:linear-gradient(#150928,#150928);padding:14px 6px 24px;Margin:0">
             <p style="Margin:0 0 24px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:18px;letter-spacing:0;font-weight:400;color:#ffffff;font-size:12px">Because of you, more families near and far will have the chance to gather over a meal and feel the warmth of others.</p>
             <table cellpadding="0" cellspacing="0" align="center" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
              <tr>
@@ -132,7 +149,7 @@ img {
              </tr>
             </table>
            </td>
-           <td width="15%" valign="bottom" style="padding:0;Margin:0;width:15%;font-size:0;line-height:0"><img src="images/border-lower-right.gif" width="83" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
+           <td width="15%" valign="bottom" bgcolor="#150928" style="background-color:#150928;background-image:linear-gradient(#150928,#150928);padding:0;Margin:0;width:15%;font-size:0;line-height:0"><img src="images/border-lower-right.gif" width="83" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
           </tr>
          </table>
         </td>
@@ -140,7 +157,7 @@ img {
 
        <!-- BORDER: bottom fruit -->
        <tr>
-        <td style="padding:0;Margin:0;font-size:0;line-height:0"><img src="images/border-bottom.gif" width="550" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
+        <td bgcolor="#150928" style="padding:0;Margin:0;font-size:0;line-height:0;background-color:#150928;background-image:linear-gradient(#150928,#150928)"><img src="images/border-bottom.gif" width="550" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
        </tr>
       </table>
 
