@@ -64,6 +64,10 @@ img {
 /* The layout is fluid without this block; it only tightens spacing on narrow screens. */
 @media only screen and (max-width:480px) {
   .copy { padding-left:2px!important; padding-right:2px!important }
+  /* On phones the closing copy is taller than the lower vines, which leaves empty
+     side space above them. A second, shorter vine is stacked on top to fill it.
+     It is hidden everywhere else (and where media queries are not supported). */
+  .fill { display:block!important; width:100%!important; height:auto!important; max-height:none!important }
 }
   </style>
  </head>
@@ -131,7 +135,7 @@ img {
         <td style="padding:0;Margin:0">
          <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%">
           <tr>
-           <td width="17.4%" valign="bottom" bgcolor="#150928" background="images/card-bg.png" style="background-color:#150928;background-image:url(images/card-bg.png);padding:0;Margin:0;width:17.4%;font-size:0;line-height:0"><img src="images/border-lower-left.gif" width="96" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
+           <td width="17.4%" valign="bottom" bgcolor="#150928" background="images/card-bg.png" style="background-color:#150928;background-image:url(images/card-bg.png);padding:0;Margin:0;width:17.4%;font-size:0;line-height:0"><!--[if !mso]><!--><img class="fill" src="images/border-fill-left.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><!--<![endif]--><img src="images/border-lower-left.gif" width="96" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
            <td class="copy" align="center" valign="bottom" bgcolor="#150928" background="images/card-bg.png" style="background-color:#150928;background-image:url(images/card-bg.png);padding:14px 6px 0;Margin:0">
             <p style="Margin:0 0 24px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:18px;letter-spacing:0;font-weight:400;color:#ffffff;font-size:12px">Because of you, more families near and far will have the chance to gather over a meal and feel the warmth of others.</p>
             <table cellpadding="0" cellspacing="0" align="center" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
@@ -151,7 +155,7 @@ img {
              </tr>
             </table>
            </td>
-           <td width="15%" valign="bottom" bgcolor="#150928" background="images/card-bg.png" style="background-color:#150928;background-image:url(images/card-bg.png);padding:0;Margin:0;width:15%;font-size:0;line-height:0"><img src="images/border-lower-right.gif" width="83" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
+           <td width="15%" valign="bottom" bgcolor="#150928" background="images/card-bg.png" style="background-color:#150928;background-image:url(images/card-bg.png);padding:0;Margin:0;width:15%;font-size:0;line-height:0"><!--[if !mso]><!--><img class="fill" src="images/border-fill-right.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><!--<![endif]--><img src="images/border-lower-right.gif" width="83" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
           </tr>
          </table>
         </td>
