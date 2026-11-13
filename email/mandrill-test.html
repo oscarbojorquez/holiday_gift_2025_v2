@@ -67,18 +67,29 @@ u + .body .gm-diff { background:#000; mix-blend-mode:difference }
    recolour background colours (and CSS gradients) but leave images alone.
    The rules below cover clients that honour dark-mode CSS. */
 @media (prefers-color-scheme:dark) {
-  .card, .card td { background-color:#150928!important; background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png)!important }
+  .card, .card td { background-color:#150928!important; background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png)!important }
   .copy p { color:#ffffff!important }
 }
 /* Outlook.com and the Outlook mobile apps */
-[data-ogsb] .card, [data-ogsb] .card td { background-color:#150928!important; background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png)!important }
+[data-ogsb] .card, [data-ogsb] .card td { background-color:#150928!important; background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png)!important }
 [data-ogsc] .copy p { color:#ffffff!important }
-/* Phone type and spacing carried over from the Stripo export (same 600px breakpoint):
-   tighter line height, smaller gaps, and different sizes for the text images. */
-@media only screen and (max-width:600px) {
+/* PHONES (440px and narrower: the widest current phone in portrait).
+   1. The border swaps to the taller mobile artwork: each border slot holds a desktop
+      image (.dsk) and a hidden mobile image (.mob), and the side columns take the
+      mobile artwork's proportions. Where media queries are unsupported the desktop
+      border simply stays. Wider than 440px the mobile vines would outgrow the copy.
+   2. Type, gaps and text-image sizes take the phone values from the Stripo export. */
+@media only screen and (max-width:440px) {
+  .dsk { display:none!important }
+  .mob { display:block!important; width:100%!important; height:auto!important; max-height:none!important }
+  .col-l { width:18.4%!important }
+  .col-r { width:15.8%!important }
+  .c1 { padding:10px 2px 8px!important; vertical-align:bottom!important }
+  .c2 { padding:10px 2px 5px!important }
   .copy p.t { line-height:110%!important }
   .copy p.m30 { margin-bottom:30px!important }
   .copy p.m19 { margin-bottom:19px!important }
+  .copy p.m63 { margin-bottom:63px!important }
   .s20 { padding-bottom:20px!important }
   .s17 { padding-bottom:17px!important }
   .s21 { padding-bottom:21px!important }
@@ -87,127 +98,10 @@ u + .body .gm-diff { background:#000; mix-blend-mode:difference }
   .i158 { width:158px!important }
   .i328 { width:100%!important; max-width:328px!important }
 }
-/* The layout is fluid without this block; it only tightens spacing on narrow screens. */
-@media only screen and (max-width:480px) {
-  .copy { padding-left:2px!important; padding-right:2px!important }
-}
 /* On the very narrowest phones 14px text cannot fit four words on every line of the
    narrow column, so the copy drops back to 12px there to keep the no-orphan rule. */
-@media only screen and (max-width:340px) {
+@media only screen and (max-width:345px) {
   .copy p.t { font-size:12px!important }
-}
-/* PHONE SIDE FILLERS. On phones the copy is taller than the side vines, which leaves
-   empty side space. Extra vine pieces are stacked above the vines to fill it. They are
-   sized so they stay shorter than the copy beside them (otherwise they would push the
-   text apart), and they stay hidden on desktop and where media queries are unsupported.
-   Upper section: vines sit at the bottom, next to the centre ornament, with a longer
-   vine above them on smaller phones and a short star sprig on larger ones.
-   Lower section: a short star sprig above the lower vines. */
-@media only screen and (max-width:460px) {
-  .vb { vertical-align:bottom!important }
-}
-@media only screen and (max-width:395px) {
-  .fill-up { display:block!important; width:100%!important; height:auto!important; max-height:none!important }
-}
-@media only screen and (min-width:396px) and (max-width:460px) {
-  .sprig-up { display:block!important; width:100%!important; height:auto!important; max-height:none!important }
-}
-@media only screen and (max-width:414px) {
-  .sprig-lo { display:block!important; width:100%!important; height:auto!important; max-height:none!important }
-}
-  </style>
-    <![endif]-->
-  <!--[if gte mso 9]>
-<noscript>
-         <xml>
-           <o:OfficeDocumentSettings>
-           <o:AllowPNG></o:AllowPNG>
-           <o:PixelsPerInch>96</o:PixelsPerInch>
-           </o:OfficeDocumentSettings>
-         </xml>
-      </noscript>
-<![endif]-->
-  <style type="text/css">
-#outlook a {
-  padding:0;
-}
-span.MsoHyperlink,
-span.MsoHyperlinkFollowed {
-  color:inherit;
-  mso-style-priority:99;
-}
-a[x-apple-data-detectors],
-#MessageViewBody a {
-  color:inherit!important;
-  text-decoration:none!important;
-  font-size:inherit!important;
-  font-family:inherit!important;
-  font-weight:inherit!important;
-  line-height:inherit!important;
-}
-img {
-  -ms-interpolation-mode:bicubic;
-}
-/* GMAIL APP DARK MODE (iOS). Gmail inverts white text to dark but cannot recolour the
-   card's image background, which left dark text on a dark card. Each white paragraph
-   sits in two wrappers whose blend modes cancel that inversion, so the text ends up
-   white whether or not Gmail has inverted it. "u + .body" matches only inside Gmail,
-   so no other mail app sees these rules. Works for pure white text only. */
-u + .body .gm-screen { background:#000; mix-blend-mode:screen }
-u + .body .gm-diff { background:#000; mix-blend-mode:difference }
-/* ORPHANS. The last four words of each paragraph are joined with non-breaking spaces
-   and wrapped in a white-space:nowrap span (two methods, in case a client drops one),
-   so a paragraph can never end on a line of fewer than four words.
-   Where the client supports it, text-wrap:pretty also evens out the lines above. */
-.copy p { text-wrap:pretty }
-:root {
-  color-scheme:light dark;
-  supported-color-schemes:light dark;
-}
-/* DARK MODE. The design is already dark, so the goal is to stop mail apps recolouring it:
-   the card colour must stay #150928 or it no longer matches the border GIFs.
-   Inline, every card cell also tiles card-bg.png, a solid #150928 image: dark modes
-   recolour background colours (and CSS gradients) but leave images alone.
-   The rules below cover clients that honour dark-mode CSS. */
-@media (prefers-color-scheme:dark) {
-  .card, .card td { background-color:#150928!important; background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png)!important }
-  .copy p { color:#ffffff!important }
-}
-/* Outlook.com and the Outlook mobile apps */
-[data-ogsb] .card, [data-ogsb] .card td { background-color:#150928!important; background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png)!important }
-[data-ogsc] .copy p { color:#ffffff!important }
-/* Phone type and spacing carried over from the Stripo export (same 600px breakpoint):
-   tighter line height, smaller gaps, and different sizes for the text images. */
-@media only screen and (max-width:600px) {
-  .copy p.t { line-height:110%!important }
-  .copy p.m30 { margin-bottom:30px!important }
-  .copy p.m19 { margin-bottom:19px!important }
-  .s20 { padding-bottom:20px!important }
-  .s17 { padding-bottom:17px!important }
-  .s21 { padding-bottom:21px!important }
-  .i208 { width:208px!important }
-  .i191 { width:191px!important }
-  .i158 { width:158px!important }
-  .i328 { width:100%!important; max-width:328px!important }
-}
-/* The layout is fluid without this block; it only tightens spacing on narrow screens. */
-@media only screen and (max-width:480px) {
-  .copy { padding-left:2px!important; padding-right:2px!important }
-}
-/* On the very narrowest phones 14px text cannot fit four words on every line of the
-   narrow column, so the copy drops back to 12px there to keep the no-orphan rule. */
-@media only screen and (max-width:340px) {
-  .copy p.t { font-size:12px!important }
-}
-/* On phones the closing copy is taller than the lower vines, which leaves empty side
-   space above them. An extra vine is stacked on top to fill it: a longer one on small
-   phones, a short star sprig on larger phones where the gap is smaller. Both stay
-   hidden on desktop and where media queries are not supported. */
-@media only screen and (max-width:380px) {
-  .fill { display:block!important; width:100%!important; height:auto!important; max-height:none!important }
-}
-@media only screen and (min-width:381px) and (max-width:460px) {
-  .fill2 { display:block!important; width:100%!important; height:auto!important; max-height:none!important }
 }
   </style>
  </head>
@@ -226,13 +120,14 @@ u + .body .gm-diff { background:#000; mix-blend-mode:difference }
       <!--[if mso]><table role="presentation" cellpadding="0" cellspacing="0" width="550" align="center"><tr><td><![endif]-->
 
       <!-- CARD: fluid up to 550px. The border is seven animated GIF slices, all real images,
-           stacked around two text sections that are free to grow with the copy.
+           stacked around two text sections that are free to grow with the copy. Desktop
+           slices are cut from email_4.gif, phone slices from emailmobile.gif.
            #150928 is the flat background colour baked into every slice. -->
-      <table class="card" cellpadding="0" cellspacing="0" align="center" bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;max-width:550px;background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png)">
+      <table class="card" cellpadding="0" cellspacing="0" align="center" bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;max-width:550px;background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png)">
 
        <!-- BORDER: top garland -->
        <tr>
-        <td bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png" style="padding:0;Margin:0;font-size:0;line-height:0;background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png)"><img src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/border-top.gif" width="550" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
+        <td bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png" style="padding:0;Margin:0;font-size:0;line-height:0;background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png)"><img class="dsk" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/border-d-top.gif" width="550" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"><!--[if !mso]><!--><img class="mob" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/border-m-top.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><!--<![endif]--></td>
        </tr>
 
        <!-- SECTION 1: letter + headline, between the upper side vines -->
@@ -240,23 +135,23 @@ u + .body .gm-diff { background:#000; mix-blend-mode:difference }
         <td style="padding:0;Margin:0">
          <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%">
           <tr>
-           <td class="vb" width="17.4%" valign="middle" bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png" style="background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png);padding:0;Margin:0;width:17.4%;font-size:0;line-height:0"><!--[if !mso]><!--><img class="fill-up" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/border-fill-left.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><img class="sprig-up" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/border-star-left.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><!--<![endif]--><img src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/border-upper-left.gif" width="96" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
-           <td class="copy" align="center" valign="middle" bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png" style="background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png);padding:0 6px 20px;Margin:0">
+           <td class="col-l" width="17.4%" valign="middle" bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png" style="background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png);padding:0;Margin:0;width:17.4%;font-size:0;line-height:0"><img class="dsk" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/border-d-upper-left.gif" width="96" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"><!--[if !mso]><!--><img class="mob" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/border-m-upper-left.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><!--<![endif]--></td>
+           <td class="copy c1" align="center" valign="middle" bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png" style="background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png);padding:14px 6px 20px;Margin:0">
             <!-- Mandrill: greeting name goes here -->
             <div class="gm-screen"><div class="gm-diff"><p class="t" style="Margin:0 0 17px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:17px;letter-spacing:0;font-weight:400;color:#ffffff;font-size:14px">Dear Brad,</p></div></div>
             <div class="gm-screen"><div class="gm-diff"><p class="t" style="Margin:0 0 17px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:17px;letter-spacing:0;font-weight:400;color:#ffffff;font-size:14px">As another year comes to a close, the holidays return with their familiar comforts. A time to reflect, share a meal, and make room at the table for <span style="white-space:nowrap">those&nbsp;we&nbsp;hold&nbsp;dear.</span></p></div></div>
             <div class="gm-screen"><div class="gm-diff"><p class="t" style="Margin:0 0 17px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:17px;letter-spacing:0;font-weight:400;color:#ffffff;font-size:14px">But for millions of people, the comfort of knowing where their next meal will come from <span style="white-space:nowrap">is&nbsp;far&nbsp;from&nbsp;certain.</span></p></div></div>
-            <div class="gm-screen"><div class="gm-diff"><p class="t m30" style="Margin:0 0 32px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:17px;letter-spacing:0;font-weight:400;color:#ffffff;font-size:14px">This holiday season, we are proud to make a donation in your name to the World Food Programme and Feeding America, two organizations working to bring nourishment and care to those <span style="white-space:nowrap">who&nbsp;need&nbsp;it&nbsp;most.</span></p></div></div>
+            <div class="gm-screen"><div class="gm-diff"><p class="t m30" style="Margin:0 0 27px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:17px;letter-spacing:0;font-weight:400;color:#ffffff;font-size:14px">This holiday season, we are proud to make a donation in your name to the World Food Programme and Feeding America, two organizations working to bring nourishment and care to those <span style="white-space:nowrap">who&nbsp;need&nbsp;it&nbsp;most.</span></p></div></div>
             <table cellpadding="0" cellspacing="0" align="center" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
              <tr>
-              <td class="s20" align="center" style="padding:0 0 31px;Margin:0;font-size:0"><img class="i208" src="https://fcetioh.stripocdn.email/content/guids/CABINET_00a0d6fecd8da9bb60e76471b2620e7f6abd9579eed82ce5074ff3a0ddf4182b/images/because_of_your_goodness_this_season_there_isorange.png" alt="Because of your goodness, this season there is…" width="214" style="display:block;width:214px;max-width:100%;height:auto;font-size:14px;color:#ffffff;border:0;outline:none;text-decoration:none"></td>
+              <td class="s20" align="center" style="padding:0 0 31px;Margin:0;font-size:0"><img class="i208" src="https://fcetioh.stripocdn.email/content/guids/CABINET_00a0d6fecd8da9bb60e76471b2620e7f6abd9579eed82ce5074ff3a0ddf4182b/images/because_of_your_goodness_this_season_there_isorange.png" alt="Because of your goodness, this season there is…" width="214" style="display:block;width:214px;max-width:100%;height:auto;font-size:14px;color:#e8963c;border:0;outline:none;text-decoration:none"></td>
              </tr>
              <tr>
-              <td align="center" style="padding:0;Margin:0;font-size:0"><img src="https://fcetioh.stripocdn.email/content/guids/CABINET_0accc73189b1af1fe52f40ec5e8c17fe4d7eea9a4fdfcc6ef435d49ac88b72da/images/hope_on_the_table.png" class="i191" alt="Hope on the Table" width="222" style="display:block;width:222px;max-width:100%;height:auto;font-size:24px;color:#ffffff;border:0;outline:none;text-decoration:none"></td>
+              <td align="center" style="padding:0;Margin:0;font-size:0"><img class="i191" src="https://fcetioh.stripocdn.email/content/guids/CABINET_0accc73189b1af1fe52f40ec5e8c17fe4d7eea9a4fdfcc6ef435d49ac88b72da/images/hope_on_the_table.png" alt="Hope on the Table" width="222" style="display:block;width:222px;max-width:100%;height:auto;font-size:24px;color:#ffffff;border:0;outline:none;text-decoration:none"></td>
              </tr>
             </table>
            </td>
-           <td class="vb" width="15%" valign="middle" bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png" style="background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png);padding:0;Margin:0;width:15%;font-size:0;line-height:0"><!--[if !mso]><!--><img class="fill-up" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/border-fill-right.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><img class="sprig-up" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/border-star-right-alt.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><!--<![endif]--><img src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/border-upper-right.gif" width="83" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
+           <td class="col-r" width="15.2%" valign="middle" bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png" style="background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png);padding:0;Margin:0;width:15.2%;font-size:0;line-height:0"><img class="dsk" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/border-d-upper-right.gif" width="84" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"><!--[if !mso]><!--><img class="mob" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/border-m-upper-right.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><!--<![endif]--></td>
           </tr>
          </table>
         </td>
@@ -264,40 +159,39 @@ u + .body .gm-diff { background:#000; mix-blend-mode:difference }
 
        <!-- BORDER: centre pomegranate divider -->
        <tr>
-        <td bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png" style="padding:0;Margin:0;font-size:0;line-height:0;background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png)"><img src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/border-centre.gif" width="550" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
+        <td bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png" style="padding:0;Margin:0;font-size:0;line-height:0;background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png)"><img class="dsk" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/border-d-centre.gif" width="550" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"><!--[if !mso]><!--><img class="mob" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/border-m-centre.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><!--<![endif]--></td>
        </tr>
 
        <!-- SECTION 2: closing + signature, between the lower side vines.
-            The vines and the copy are bottom-aligned: the vines stay joined to the
-            fruit below, and the last line sits just above the garland, however long
-            the signature list gets. -->
+            The vines and the copy are bottom-aligned, so the last line keeps a fixed
+            distance from the garland below however long the signature list gets. -->
        <tr>
         <td style="padding:0;Margin:0">
          <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%">
           <tr>
-           <td width="17.4%" valign="bottom" bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png" style="background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png);padding:0;Margin:0;width:17.4%;font-size:0;line-height:0"><!--[if !mso]><!--><img class="sprig-lo" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/border-star-left.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><!--<![endif]--><img src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/border-lower-left.gif" width="96" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
-           <td class="copy" align="center" valign="bottom" bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png" style="background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png);padding:14px 6px 0;Margin:0">
-            <div class="gm-screen"><div class="gm-diff"><p class="t m19" style="Margin:0 0 27px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:15px;letter-spacing:0;font-weight:normal;color:#ffffff;font-size:14px">Because of you, more families near and far will have the chance to gather over a meal and feel <span style="white-space:nowrap">the&nbsp;warmth&nbsp;of&nbsp;others.</span></p></div></div>
+           <td class="col-l" width="17.4%" valign="bottom" bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png" style="background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png);padding:0;Margin:0;width:17.4%;font-size:0;line-height:0"><img class="dsk" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/border-d-lower-left.gif" width="96" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"><!--[if !mso]><!--><img class="mob" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/border-m-lower-left.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><!--<![endif]--></td>
+           <td class="copy c2" align="center" valign="bottom" bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png" style="background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png);padding:16px 6px 5px;Margin:0">
+            <div class="gm-screen"><div class="gm-diff"><p class="t m19" style="Margin:0 0 41px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:15px;letter-spacing:0;font-weight:normal;color:#ffffff;font-size:14px">Because of you, more families near and far will have the chance to gather over a meal and feel <span style="white-space:nowrap">the&nbsp;warmth&nbsp;of&nbsp;others.</span></p></div></div>
             <table cellpadding="0" cellspacing="0" align="center" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
              <tr>
-              <td class="s17" align="center" style="padding:0 0 24px;Margin:0;font-size:0"><img class="i158" src="https://fcetioh.stripocdn.email/content/guids/CABINET_00a0d6fecd8da9bb60e76471b2620e7f6abd9579eed82ce5074ff3a0ddf4182b/images/happy_holidaysorange.png" alt="Happy Holidays" width="132" style="display:block;width:132px;max-width:100%;height:auto;font-size:14px;color:#e8963c;border:0;outline:none;text-decoration:none"></td>
+              <td class="s17" align="center" style="padding:0 0 21px;Margin:0;font-size:0"><img class="i158" src="https://fcetioh.stripocdn.email/content/guids/CABINET_00a0d6fecd8da9bb60e76471b2620e7f6abd9579eed82ce5074ff3a0ddf4182b/images/happy_holidaysorange.png" alt="Happy Holidays" width="142" style="display:block;width:142px;max-width:100%;height:auto;font-size:14px;color:#e8963c;border:0;outline:none;text-decoration:none"></td>
              </tr>
             </table>
             <div class="gm-screen"><div class="gm-diff"><p class="t" style="Margin:0 0 15px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:15px;letter-spacing:0;font-weight:normal;color:#ffffff;font-size:14px">Yours in gratitude and peace,<br>CAA Client Team</p></div></div>
             <!-- Mandrill: signature names go here; the section grows to fit.
                  To keep the no-orphan rule with merged names, join the last four words
                  with &nbsp; in the merge value (or each first and last name pair). -->
-            <div class="gm-screen"><div class="gm-diff"><p class="t" style="Margin:0 0 18px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:15px;letter-spacing:0;font-weight:normal;color:#ffffff;font-size:14px">Name Last Name First Name Last Name First Name Last Name First Name Last Name <span style="white-space:nowrap">First&nbsp;Name&nbsp;Last&nbsp;Name</span></p></div></div>
+            <div class="gm-screen"><div class="gm-diff"><p class="t m63" style="Margin:0 0 69px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:15px;letter-spacing:0;font-weight:normal;color:#ffffff;font-size:14px">Name Last Name First Name Last Name First Name Last Name First Name Last Name <span style="white-space:nowrap">First&nbsp;Name&nbsp;Last&nbsp;Name</span></p></div></div>
             <table cellpadding="0" cellspacing="0" align="center" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
              <tr>
-              <td class="s21" align="center" style="padding:0 0 27px;Margin:0;font-size:0"><img class="i328" src="https://fcetioh.stripocdn.email/content/guids/CABINET_0accc73189b1af1fe52f40ec5e8c17fe4d7eea9a4fdfcc6ef435d49ac88b72da/images/group_48098418.png" alt="Feeding America, CAA Community Impact, and WFP" width="308" style="display:block;width:308px;max-width:100%;height:auto;font-size:12px;color:#ffffff;border:0;outline:none;text-decoration:none"></td>
+              <td class="s21" align="center" style="padding:0 0 64px;Margin:0;font-size:0"><img class="i328" src="https://fcetioh.stripocdn.email/content/guids/CABINET_0accc73189b1af1fe52f40ec5e8c17fe4d7eea9a4fdfcc6ef435d49ac88b72da/images/group_48098418.png" alt="Feeding America, CAA Community Impact, and WFP" width="348" style="display:block;width:348px;max-width:100%;height:auto;font-size:12px;color:#ffffff;border:0;outline:none;text-decoration:none"></td>
              </tr>
              <tr>
-              <td align="center" style="padding:0;Margin:0;font-size:0"><img class="i208" src="https://fcetioh.stripocdn.email/content/guids/CABINET_00a0d6fecd8da9bb60e76471b2620e7f6abd9579eed82ce5074ff3a0ddf4182b/images/to_see_your_gift_in_action_click_here_orange.png" alt="To see your gift in action, click here" width="181" style="display:block;width:181px;max-width:100%;height:auto;font-size:12px;color:#e8963c;border:0;outline:none;text-decoration:none"></td>
+              <td align="center" style="padding:0;Margin:0;font-size:0"><img class="i208" src="https://fcetioh.stripocdn.email/content/guids/CABINET_00a0d6fecd8da9bb60e76471b2620e7f6abd9579eed82ce5074ff3a0ddf4182b/images/to_see_your_gift_in_action_click_here_orange.png" alt="To see your gift in action, click here" width="231" style="display:block;width:231px;max-width:100%;height:auto;font-size:12px;color:#e8963c;border:0;outline:none;text-decoration:none"></td>
              </tr>
             </table>
            </td>
-           <td width="15%" valign="bottom" bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png" style="background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png);padding:0;Margin:0;width:15%;font-size:0;line-height:0"><!--[if !mso]><!--><img class="sprig-lo" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/border-star-right.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><!--<![endif]--><img src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/border-lower-right.gif" width="83" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
+           <td class="col-r" width="15.2%" valign="bottom" bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png" style="background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png);padding:0;Margin:0;width:15.2%;font-size:0;line-height:0"><img class="dsk" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/border-d-lower-right.gif" width="84" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"><!--[if !mso]><!--><img class="mob" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/border-m-lower-right.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><!--<![endif]--></td>
           </tr>
          </table>
         </td>
@@ -305,7 +199,7 @@ u + .body .gm-diff { background:#000; mix-blend-mode:difference }
 
        <!-- BORDER: bottom fruit -->
        <tr>
-        <td bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png" style="padding:0;Margin:0;font-size:0;line-height:0;background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/card-bg.png)"><img src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/cb6d677e86ec89044e849e078d5bb8e30b111a04/email/images/border-bottom.gif" width="550" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"></td>
+        <td bgcolor="#150928" background="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png" style="padding:0;Margin:0;font-size:0;line-height:0;background-color:#150928;background-image:url(https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/card-bg.png)"><img class="dsk" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/border-d-bottom.gif" width="550" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"><!--[if !mso]><!--><img class="mob" src="https://raw.githubusercontent.com/oscarbojorquez/holiday_gift_2025_v2/34e604d1d1382eea518fba789b92d6d141eeb3b0/email/images/border-m-bottom.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><!--<![endif]--></td>
        </tr>
       </table>
 
