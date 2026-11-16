@@ -49,7 +49,9 @@ img {
    card's image background, which left dark text on a dark card. Each white paragraph
    sits in two wrappers whose blend modes cancel that inversion, so the text ends up
    white whether or not Gmail has inverted it. "u + .body" matches only inside Gmail,
-   so no other mail app sees these rules. Works for pure white text only. */
+   so no other mail app sees these rules. The trick is exact for pure white text;
+   with the cream #fff5d8 copy the result is still light, but its tint depends on
+   how Gmail darkens cream, so check it in the Gmail app's dark mode. */
 u + .body .gm-screen { background:#000; mix-blend-mode:screen }
 u + .body .gm-diff { background:#000; mix-blend-mode:difference }
 /* ORPHANS. The last four words of each paragraph are joined with non-breaking spaces
@@ -68,11 +70,11 @@ u + .body .gm-diff { background:#000; mix-blend-mode:difference }
    The rules below cover clients that honour dark-mode CSS. */
 @media (prefers-color-scheme:dark) {
   .card, .card td { background-color:#150928!important; background-image:url(images/card-bg.png)!important }
-  .copy p { color:#ffffff!important }
+  .copy p { color:#fff5d8!important }
 }
 /* Outlook.com and the Outlook mobile apps */
 [data-ogsb] .card, [data-ogsb] .card td { background-color:#150928!important; background-image:url(images/card-bg.png)!important }
-[data-ogsc] .copy p { color:#ffffff!important }
+[data-ogsc] .copy p { color:#fff5d8!important }
 /* PHONES (440px and narrower: the widest current phone in portrait).
    1. The border swaps to the taller mobile artwork: each border slot holds a desktop
       image (.dsk) and a hidden mobile image (.mob), and the side columns take the
@@ -138,16 +140,16 @@ u + .body .gm-diff { background:#000; mix-blend-mode:difference }
            <td class="col-l" width="17.4%" valign="middle" bgcolor="#150928" background="images/card-bg.png" style="background-color:#150928;background-image:url(images/card-bg.png);padding:0;Margin:0;width:17.4%;font-size:0;line-height:0"><img class="dsk" src="images/border-d-upper-left.gif" width="96" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"><!--[if !mso]><!--><img class="mob" src="images/border-m-upper-left.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><!--<![endif]--></td>
            <td class="copy c1" align="center" valign="middle" bgcolor="#150928" background="images/card-bg.png" style="background-color:#150928;background-image:url(images/card-bg.png);padding:14px 6px 6px;Margin:0">
             <!-- Mandrill: greeting name goes here -->
-            <div class="gm-screen"><div class="gm-diff"><p class="t" style="Margin:0 0 17px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:17px;letter-spacing:0;font-weight:400;color:#ffffff;font-size:14px">Dear Brad,</p></div></div>
-            <div class="gm-screen"><div class="gm-diff"><p class="t" style="Margin:0 0 17px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:17px;letter-spacing:0;font-weight:400;color:#ffffff;font-size:14px">As another year comes to a close, the holidays return with their familiar comforts. A time to reflect, share a meal, and make room at the table for <span style="white-space:nowrap">those&nbsp;we&nbsp;hold&nbsp;dear.</span></p></div></div>
-            <div class="gm-screen"><div class="gm-diff"><p class="t" style="Margin:0 0 17px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:17px;letter-spacing:0;font-weight:400;color:#ffffff;font-size:14px">But for millions of people, the comfort of knowing where their next meal will come from <span style="white-space:nowrap">is&nbsp;far&nbsp;from&nbsp;certain.</span></p></div></div>
-            <div class="gm-screen"><div class="gm-diff"><p class="t m30" style="Margin:0 0 27px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:17px;letter-spacing:0;font-weight:400;color:#ffffff;font-size:14px">This holiday season, we are proud to make a donation in your name to the World Food Programme and Feeding America, two organizations working to bring nourishment and care to those <span style="white-space:nowrap">who&nbsp;need&nbsp;it&nbsp;most.</span></p></div></div>
+            <div class="gm-screen"><div class="gm-diff"><p class="t" style="Margin:0 0 17px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:17px;letter-spacing:0;font-weight:400;color:#fff5d8;font-size:14px">Dear Brad,</p></div></div>
+            <div class="gm-screen"><div class="gm-diff"><p class="t" style="Margin:0 0 17px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:17px;letter-spacing:0;font-weight:400;color:#fff5d8;font-size:14px">As another year comes to a close, the holidays return with their familiar comforts. A time to reflect, share a meal, and make room at the table for <span style="white-space:nowrap">those&nbsp;we&nbsp;hold&nbsp;dear.</span></p></div></div>
+            <div class="gm-screen"><div class="gm-diff"><p class="t" style="Margin:0 0 17px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:17px;letter-spacing:0;font-weight:400;color:#fff5d8;font-size:14px">But for millions of people, the comfort of knowing where their next meal will come from <span style="white-space:nowrap">is&nbsp;far&nbsp;from&nbsp;certain.</span></p></div></div>
+            <div class="gm-screen"><div class="gm-diff"><p class="t m30" style="Margin:0 0 27px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:17px;letter-spacing:0;font-weight:400;color:#fff5d8;font-size:14px">This holiday season, we are proud to make a donation in your name to the World Food Programme and Feeding America, two organizations working to bring nourishment and care to those <span style="white-space:nowrap">who&nbsp;need&nbsp;it&nbsp;most.</span></p></div></div>
             <table cellpadding="0" cellspacing="0" align="center" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
              <tr>
               <td class="s20" align="center" style="padding:0 0 31px;Margin:0;font-size:0"><img class="i208" src="https://fcetioh.stripocdn.email/content/guids/CABINET_00a0d6fecd8da9bb60e76471b2620e7f6abd9579eed82ce5074ff3a0ddf4182b/images/because_of_your_goodness_this_season_there_isorange.png" alt="Because of your goodness, this season there is…" width="214" style="display:block;width:214px;max-width:100%;height:auto;font-size:14px;color:#e8963c;border:0;outline:none;text-decoration:none"></td>
              </tr>
              <tr>
-              <td align="center" style="padding:0;Margin:0;font-size:0"><img class="i191" src="https://fcetioh.stripocdn.email/content/guids/CABINET_0accc73189b1af1fe52f40ec5e8c17fe4d7eea9a4fdfcc6ef435d49ac88b72da/images/hope_on_the_table.png" alt="Hope on the Table" width="222" style="display:block;width:222px;max-width:100%;height:auto;font-size:24px;color:#ffffff;border:0;outline:none;text-decoration:none"></td>
+              <td align="center" style="padding:0;Margin:0;font-size:0"><img class="i191" src="https://fcetioh.stripocdn.email/content/guids/CABINET_0accc73189b1af1fe52f40ec5e8c17fe4d7eea9a4fdfcc6ef435d49ac88b72da/images/hope_on_the_table.png" alt="Hope on the Table" width="222" style="display:block;width:222px;max-width:100%;height:auto;font-size:24px;color:#fff5d8;border:0;outline:none;text-decoration:none"></td>
              </tr>
             </table>
            </td>
@@ -171,20 +173,20 @@ u + .body .gm-diff { background:#000; mix-blend-mode:difference }
           <tr>
            <td class="col-l" width="17.4%" valign="bottom" bgcolor="#150928" background="images/card-bg.png" style="background-color:#150928;background-image:url(images/card-bg.png);padding:0;Margin:0;width:17.4%;font-size:0;line-height:0"><img class="dsk" src="images/border-d-lower-left.gif" width="96" alt="" style="display:block;width:100%;height:auto;border:0;outline:none;text-decoration:none"><!--[if !mso]><!--><img class="mob" src="images/border-m-lower-left.gif" alt="" style="display:none;max-height:0;overflow:hidden;border:0;outline:none;text-decoration:none"><!--<![endif]--></td>
            <td class="copy c2" align="center" valign="bottom" bgcolor="#150928" background="images/card-bg.png" style="background-color:#150928;background-image:url(images/card-bg.png);padding:16px 6px 5px;Margin:0">
-            <div class="gm-screen"><div class="gm-diff"><p class="t m19" style="Margin:0 0 41px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:15px;letter-spacing:0;font-weight:normal;color:#ffffff;font-size:14px">Because of you, more families near and far will have the chance to gather over a meal and feel <span style="white-space:nowrap">the&nbsp;warmth&nbsp;of&nbsp;others.</span></p></div></div>
+            <div class="gm-screen"><div class="gm-diff"><p class="t m19" style="Margin:0 0 41px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:15px;letter-spacing:0;font-weight:normal;color:#fff5d8;font-size:14px">Because of you, more families near and far will have the chance to gather over a meal and feel <span style="white-space:nowrap">the&nbsp;warmth&nbsp;of&nbsp;others.</span></p></div></div>
             <table cellpadding="0" cellspacing="0" align="center" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
              <tr>
               <td class="s17" align="center" style="padding:0 0 21px;Margin:0;font-size:0"><img class="i158" src="https://fcetioh.stripocdn.email/content/guids/CABINET_00a0d6fecd8da9bb60e76471b2620e7f6abd9579eed82ce5074ff3a0ddf4182b/images/happy_holidaysorange.png" alt="Happy Holidays" width="142" style="display:block;width:142px;max-width:100%;height:auto;font-size:14px;color:#e8963c;border:0;outline:none;text-decoration:none"></td>
              </tr>
             </table>
-            <div class="gm-screen"><div class="gm-diff"><p class="t" style="Margin:0 0 15px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:15px;letter-spacing:0;font-weight:normal;color:#ffffff;font-size:14px">Yours in gratitude and peace,<br>CAA Client Team</p></div></div>
+            <div class="gm-screen"><div class="gm-diff"><p class="t" style="Margin:0 0 15px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:15px;letter-spacing:0;font-weight:normal;color:#fff5d8;font-size:14px">Yours in gratitude and peace,<br>CAA Client Team</p></div></div>
             <!-- Mandrill: signature names go here; the section grows to fit.
                  To keep the no-orphan rule with merged names, join the last four words
                  with &nbsp; in the merge value (or each first and last name pair). -->
-            <div class="gm-screen"><div class="gm-diff"><p class="t m63" style="Margin:0 0 69px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:15px;letter-spacing:0;font-weight:normal;color:#ffffff;font-size:14px">Name Last Name First Name Last Name First Name Last Name First Name Last Name <span style="white-space:nowrap">First&nbsp;Name&nbsp;Last&nbsp;Name</span></p></div></div>
+            <div class="gm-screen"><div class="gm-diff"><p class="t m63" style="Margin:0 0 69px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:15px;letter-spacing:0;font-weight:normal;color:#fff5d8;font-size:14px">Name Last Name First Name Last Name First Name Last Name First Name Last Name <span style="white-space:nowrap">First&nbsp;Name&nbsp;Last&nbsp;Name</span></p></div></div>
             <table cellpadding="0" cellspacing="0" align="center" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
              <tr>
-              <td class="s21" align="center" style="padding:0 0 64px;Margin:0;font-size:0"><img class="i328" src="https://fcetioh.stripocdn.email/content/guids/CABINET_0accc73189b1af1fe52f40ec5e8c17fe4d7eea9a4fdfcc6ef435d49ac88b72da/images/group_48098418.png" alt="Feeding America, CAA Community Impact, and WFP" width="348" style="display:block;width:348px;max-width:100%;height:auto;font-size:12px;color:#ffffff;border:0;outline:none;text-decoration:none"></td>
+              <td class="s21" align="center" style="padding:0 0 64px;Margin:0;font-size:0"><img class="i328" src="https://fcetioh.stripocdn.email/content/guids/CABINET_0accc73189b1af1fe52f40ec5e8c17fe4d7eea9a4fdfcc6ef435d49ac88b72da/images/group_48098418.png" alt="Feeding America, CAA Community Impact, and WFP" width="348" style="display:block;width:348px;max-width:100%;height:auto;font-size:12px;color:#fff5d8;border:0;outline:none;text-decoration:none"></td>
              </tr>
              <tr>
               <td align="center" style="padding:0;Margin:0;font-size:0"><img class="i208" src="https://fcetioh.stripocdn.email/content/guids/CABINET_00a0d6fecd8da9bb60e76471b2620e7f6abd9579eed82ce5074ff3a0ddf4182b/images/to_see_your_gift_in_action_click_here_orange.png" alt="To see your gift in action, click here" width="231" style="display:block;width:231px;max-width:100%;height:auto;font-size:12px;color:#e8963c;border:0;outline:none;text-decoration:none"></td>
